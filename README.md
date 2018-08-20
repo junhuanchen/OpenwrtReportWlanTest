@@ -38,13 +38,13 @@ This is a network card client connection monitoring the router and will output t
 
 ## 如何定时执行程序？
 
-在ssh Shell 中执行 crontab –e 并在其中插入以下命令，这将设定以后开机每一分钟执行定时调用 task.sh 文件
+在ssh Shell 中执行 crontab –e 并在其中插入以下命令，这将设定以后开机每 5秒 执行定时调用 task.sh 文件
 
 ``` shell
 */1 * * * * /root/task.sh
 ```
 
-保存之后将在系统后台运行并输出当前路由器时间，如果运行期间发现设备连接后断开（在5秒之间），它将被输出到以下文件，如 wifi_report_2018-08-01.data 中。
+保存之后将在系统后台运行并输出当前路由器时间，如果运行期间发现设备连接后断开（连接5秒内断开可能不会被记录），并且断开的客户端它的信息将被输出到以下文件，如 wifi_report_2018-08-01.data 中。
 
 其内容如下。
 
