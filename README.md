@@ -5,11 +5,27 @@ This is a network card client connection monitoring the router and will output t
 
 ## 如何使用？
 
-系统环境 Linux 下 例如：OpenWrt 的 LEDE.
+系统环境 Linux 下 例如：OpenWrt.
 
-使用 Lua 版本为 Lua 5.1.5
+使用 Lua 版本为 Lua 5.1.5 (OpenWrt 已自带该环境)
 
-支持 ssh 和 iw 指令，前者用以将 lua 程序拷入其中，后者用以读取AP网卡的客户端连接信息。
+如何烧写 Openwrt 固件不在本文讨论范围内。
+
+## 如何使用 ssh？
+
+[OpenWrt 启用 SSH 命令登陆(图文)](https://blog.csdn.net/upi2u/article/details/17397169)
+
+[使用SSH登录远程服务器](https://blog.csdn.net/u011054333/article/details/52443061)
+
+[安装 sftp 工具](https://blog.csdn.net/g457499940/article/details/46546243)
+
+## 如何使用sftp？
+
+[sftp拷贝文件用法](https://blog.csdn.net/keda8997110/article/details/50780216)
+
+## 如何使用该脚本？
+
+使用的前提是 目标系统 支持 sftp 和 iw 指令，前者用以将 lua 程序拷入其中，后者用以读取AP网卡的客户端连接信息。
 
 建议拷贝如下文件到 root 目录下。（如果是其他目录，可修改以下提及 root 路径的地方）
 
@@ -18,18 +34,25 @@ This is a network card client connection monitoring the router and will output t
 3. test.lua
 4. task.sh
 
-接着执行 crontab –e 并在其中插入以下命令，这将每一分钟执行定时调用 task.sh 文件
+输入 lua test.lua 即可。
+
+## 如何定时执行程序？
+
+在ssh Shell 中执行 crontab –e 并在其中插入以下命令，这将设定以后开机每一分钟执行定时调用 task.sh 文件
+
 ``` shell
 */1 * * * * /root/task.sh
 ```
 
-之后将在系统后台运行并输出当前路由器时间，如果运行期间发现设备连接后断开（在5秒之间），它将被输出到以下文件，如 wifi_report_2018-08-01.data 中。
+保存之后将在系统后台运行并输出当前路由器时间，如果运行期间发现设备连接后断开（在5秒之间），它将被输出到以下文件，如 wifi_report_2018-08-01.data 中。
 
 其内容如下。
+
 ``` 
 ["50:8f:4c:59:a1:17",34803,57160,-23,"2018-08-01 07:30:18"]
 ["50:8f:4c:59:a1:17",10473,10094,-24,"2018-08-01 07:31:53"]
 ```
+
 分别对应 mac 地址、接收数据总数、发送数据总数、断开时间。
 
 ## 遇到问题？
