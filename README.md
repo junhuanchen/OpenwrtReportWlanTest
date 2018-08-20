@@ -17,9 +17,9 @@ This is a network card client connection monitoring the router and will output t
 
 [使用SSH登录远程服务器](https://blog.csdn.net/u011054333/article/details/52443061)
 
-[安装 sftp 工具](https://blog.csdn.net/g457499940/article/details/46546243)
-
 ## 如何使用sftp？
+
+[安装 sftp 工具](https://blog.csdn.net/g457499940/article/details/46546243)
 
 [sftp拷贝文件用法](https://blog.csdn.net/keda8997110/article/details/50780216)
 
