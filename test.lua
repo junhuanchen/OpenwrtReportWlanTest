@@ -70,15 +70,20 @@ function reset_dev_table()
 	end
 end
 
+local url = require("url")
+
 function ouput_dev_table()
 	print('ouput_dev_table')
     for k, v in pairs(DevTable) do
+    
         if(v[1] == false) -- false is disconnect, so ouput file
         then
             file = io.open(report_data, "a")
             
             DevTable[k][1] = k
             
+            shell(string.format("curl -X POST %s", url:get(DevTable[k][1], DevTable[k][2], DevTable[k][3], DevTable[k][4])))
+        
             file:write(JSON:encode(DevTable[k]))
             
             file:write('\n')
