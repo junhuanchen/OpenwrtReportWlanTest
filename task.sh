@@ -1,13 +1,7 @@
-#!/bin/bash
-step=5 #间隔的秒数，不能大于60
+#!/bin/ash
 
-i=1
-while(($i<100))
+for i in `seq 1 60`
 do
-	(lua test.lua)
-	sleep $step
-	i=$(($i+$step))
+  sleep 1s
+  lua ./test.lua
 done
-
-exit 0
-
